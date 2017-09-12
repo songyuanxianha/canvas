@@ -17,29 +17,47 @@
     <script src="js/jquery-2.1.4.min.js"></script>
 </head>
 <body style="width:100%; height:100%;">
-    <div class="huabu">
-        <canvas id="canvas"></canvas>
-    </div>
-    <div class="set">
-        <div class="line-width">
-            <span class="wid-text">粗细: </span>
-            <span class="wid1">●</span>
-            <span class="wid2">●</span>
-            <span class="wid3">●</span>
-            <span class="wid4">●</span>
-            <button class="clear">清除画布</button>
+    <div class="drawing">
+        <div class="huabu">
+            <canvas id="canvas" width="375px" height="400px"></canvas>
         </div>
-        <div class="color">
-            <span>颜色: </span>
-            <div class="color1"></div>
-            <div class="color2"></div>
-            <div class="color3"></div>
-            <div class="color4"></div>
-            <div class="color5"></div>
-            <div class="color6"></div>
-            <div class="color7"></div>
-            <div class="color8"></div>
-            <div class="color9"></div>
+        <div class="set">
+            <div class="question">
+                <span>题目:</span>
+                <span class="que-text">乌龟</span>
+            </div>
+            <div class="line-width">
+                <span class="wid-text">粗细: </span>
+                <span class="wid1" wid="2"></span>
+                <span class="wid2" wid="4"></span>
+                <span class="wid3" wid="6"></span>
+                <span class="wid4" wid="8"></span>
+                <button class="clear">清除画布</button>
+            </div>
+            <div class="color">
+                <span>颜色: </span>
+                <div class="color1 active" color="black"></div>
+                <div class="color2" color="#fe4c40"></div>
+                <div class="color3" color="#fff100"></div>
+                <div class="color4" color="#03b180"></div>
+                <div class="color5" color="#fca601"></div>
+                <div class="color6" color="#014cfd"></div>
+                <div class="color7" color="#b301fd"></div>
+                <div class="color8" color="#01d1fd"></div>
+                <div class="color9" color="#fd6c01"></div>
+            </div>
+        </div>
+        <div class="share">
+            <button class="go-share">画好了,去分享好友猜猜</button>
+        </div>
+    </div>
+    <div class="anwser" style="display: none;">
+        <div class="hua">
+            <img src="" alt="">
+        </div>
+        <div class="anwser-cont">
+            <input type="text">
+            <button class="sure-ans">回答</button>
         </div>
     </div>
     <script src="js/index.js"></script>
