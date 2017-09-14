@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas练习</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    canvas.width = 600;
+    canvas.height = 600;
+    var ctx = canvas.getContext("2d");
+    // lineCap是描述线条端点的样式,有三个值 butt(默认)  round(圆角) square(方角)   但是设置为圆角方角之后会 多一截"帽子"出来
+    // 只在线段开始和结尾处生效,线段和线段的折点的地方不会生效
+    ctx.lineWidth = 5;
+
+    //画五角星
+    ctx.beginPath();
+    for (var i = 0; i < 5; i++) {
+        
+        
+    }
+</script>
+</html>

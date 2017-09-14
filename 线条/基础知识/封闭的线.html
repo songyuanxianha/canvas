@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas封闭图形</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    canvas.width = 600;
+    canvas.height = 600;
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(100,250);
+    ctx.lineTo(300,250);
+    ctx.lineTo(300,100);
+    ctx.lineTo(500,300);
+    ctx.lineTo(300,500);
+    ctx.lineTo(300,350);
+    ctx.lineTo(100,350);
+    ctx.closePath();  // 封闭当前绘制的图形,自动首位连接并结束当前绘制状态   close要放在stroke绘制之前
+    ctx.fillStyle = "yellow";  // 可将绘制状态放在一起结构清晰
+    ctx.lineWidth = 5;                            
+    ctx.strokeStyle = "red";
+
+    ctx.fill(); // 如果填充放在绘制之后,那么指定的5px的画线宽度将会被填充色覆盖,边框会变细,
+    ctx.stroke(); // 如果想保持指定的边框粗细,将绘制放到填充后面,相当于在填充色上描边
+
+    
+    
+</script>
+</html>
