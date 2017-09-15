@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scale</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 600;
+        canvas.height = 600;
+        var ctx = canvas.getContext("2d");
+        ctx.lineWidth = 2;
+
+        ctx.save();
+        ctx.scale(1,1);
+        ctx.strokeRect(100,100,100,100);
+        ctx.restore();
+
+        ctx.save();
+        ctx.scale(2,2);
+        ctx.strokeRect(100,100,100,100);   // 不仅会对大小进行缩放,绘制点,线条粗细也会进行相应的缩放
+        ctx.restore();
+
+        ctx.save();
+        ctx.scale(3,3);
+        ctx.strokeRect(100,100,100,100);
+        ctx.restore();
+    }
+</script>
+</html>

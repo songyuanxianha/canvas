@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图形变化</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    // translate(x,y) rotate(deg) scale(sx, sy)
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 600;
+        canvas.height = 600;
+        var ctx = canvas.getContext("2d");
+        ctx.lineWidth = 5;
+        // ctx.translate(100, 100);  // 将图形分别向x轴y轴移动100px  相当于将绘制点移到了(100,100)
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(0,0,200,200);
+
+        // ctx.translate(300, 300);  // 将图形分别向x轴y轴移动300px  相当于将绘制点移到了(100 + 300,100 + 300),translate是叠加的,\
+        // ctx.fillStyle = "green";   // 如果不想叠加,想一直相对画布左上角,调用save();
+        // ctx.fillRect(0,0,200,200);
+
+        ctx.save();  // 保存当前绘图状态
+        ctx.translate(100, 100);  // 将图形分别向x轴y轴移动100px  相当于将绘制点移到了(100,100)
+        ctx.fillStyle = "red";
+        ctx.fillRect(0,0,200,200);
+        ctx.restore();  // 将保存的状态还原,save()和restore()中间的状态将是一个独立的状态,不影响整个画布的状态
+
+        ctx.save();
+        ctx.translate(300, 300);  // 此刻绿色的矩形将是基于画布左上角的(300,300)进行绘制
+        ctx.fillStyle = "green";  
+        ctx.fillRect(0,0,200,200);
+        ctx.restore();
+    }
+    
+</script>
+</html>

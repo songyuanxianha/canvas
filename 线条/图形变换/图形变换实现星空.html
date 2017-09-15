@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图形变换星空</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 600;
+        canvas.height = 600;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        for (var i = 0; i < 200; i++) {
+            var r = Math.random() * 5 + 5;
+            var x = Math.random() * canvas.width;
+            var y = Math.random() * canvas.height;
+            var deg = Math.random() * 360;
+            drawStar(ctx, r, x, y, deg);
+        }
+    }
+    // context: 上下文环境  r: 五角星外角半径  
+    // x: 五角星相对画布x轴的偏移量  y: 五角星相对于画布y轴的偏移量 rot: 五角星旋转的角度
+    function drawStar(context, r, x, y, rot) {
+        context.save();
+        context.translate(x, y);
+        context.rotate(rot/180 * Math.PI);
+        context.scale(r, r);
+        drawPath(context);
+        context.fillStyle = "#fb3";
+        context.strokeStyle = "#fd5";
+        // context.lineWidth = 2;  // 会被scale缩放,注释
+        // context.lineJoin = "round";
+        context.fill();
+        context.stroke();
+        context.restore();
+    }
+    // 画出一个基础的星形
+    function drawPath(context) {
+        context.beginPath();
+        for (var i = 0; i < 5; i++) {
+            context.lineTo(
+                Math.cos((18 + i * 72)/180 * Math.PI), 
+                -Math.sin((18 + i * 72)/180 * Math.PI)
+            );
+            context.lineTo(
+                Math.cos((54 + i * 72)/180 * Math.PI) * 0.5, 
+                -Math.sin((54 + i * 72)/180 * Math.PI) * 0.5
+            );  
+        }
+        context.closePath();
+    }
+</script>
+</html>
