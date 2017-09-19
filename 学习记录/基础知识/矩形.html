@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas矩形</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    canvas.width = 600;
+    canvas.height = 600;
+    var ctx = canvas.getContext("2d");
+    // ctx.rect(100,100,400,400);  //  参数分别是画矩形左上角的点,以及宽高
+    // ctx.fill();
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.fillStyle = "pink";
+    ctx.strokeStyle = "yellow";
+    ctx.fillRect(100,100,200,200);  // 直接填充绘制矩形,省略了ctx.fill();  
+    ctx.strokeRect(100,100,200,200);  // 同样还有strokeRect();
+    ctx.closePath();
+
+    //  后绘制的图形层级比之前绘制的高,重叠部分会遮盖之前绘制的
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(0,256,0,0.5)";
+    ctx.strokeStyle = "blue";
+    ctx.fillRect(200,200,200,200);  // 直接填充绘制矩形,省略了ctx.fill();  
+    ctx.strokeRect(200,200,200,200);  // 同样还有strokeRect();
+    ctx.closePath();  
+
+</script>
+</html>

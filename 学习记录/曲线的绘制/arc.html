@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arc画圆角矩形</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 800;
+        var ctx = canvas.getContext("2d");
+
+        ctx.save();
+        ctx.translate(100,100);
+        ctx.arc(0,0,50,Math.PI,1.5 * Math.PI,false);
+        ctx.lineTo(600,-50);
+
+        ctx.arc(600,0,50,1.5 * Math.PI,2 * Math.PI,false);
+        ctx.lineTo(650,600);
+
+        ctx.arc(600,600,50,0 * Math.PI,0.5 * Math.PI,false);
+        ctx.lineTo(0,650);
+
+        ctx.arc(0,600,50,0.5 * Math.PI,1 * Math.PI,false);
+        ctx.closePath();
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.restore();
+
+
+    }
+</script>
+</html>

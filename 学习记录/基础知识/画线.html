@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas练习</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    canvas.width = 500;
+    canvas.height = 500;
+    var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 5; // 不会因为beginPath()而改变,没有改变他的值则接下来的绘制都是这个默认值
+    ctx.beginPath();  // 如果两次stroke需要不同的绘制状态则要两次调用beginPath()方法,否则后面设置的状态会覆盖前面的
+    ctx.moveTo(0,0);  // ctx.beginPath() + lineTo() = moveTo();  beginPath()后面的moveTo可以改成lineTo();
+    ctx.lineTo(100,100);
+    ctx.lineTo(0,200);
+    ctx.strokeStyle = "green";
+    ctx.stroke();
+
+    ctx.beginPath(); // 开始新的绘制,将以新的状态进行绘制
+    ctx.moveTo(100,0);
+    ctx.lineTo(200,100);
+    ctx.lineTo(100,200);
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+    
+</script>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>线性渐变星空</title>
+</head>
+<style lang="css">
+    canvas {
+        background: #ccc;
+    }
+     #HAHAHA {
+        display: none;
+    } 
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+     <canvas id="HAHAHA"></canvas> 
+</body>
+<script>
+    // context.createPattern(image,"repeat|repeat-x|repeat-y|no-repeat")
+    //createPattern() 方法在指定的方向内重复指定的元素。
+    // 元素可以是图片、视频，或者其他 <canvas> 元素。
+    // 被重复的元素可用于绘制/填充矩形、圆形或线条等等。
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 800;
+        var ctx = canvas.getContext("2d");
+
+        // 图片填充
+        // var img = new Image();
+        // img.src = "111.png";
+        // // 没有onload没有效果
+        // img.onload = function() {
+        //     var qianzghi = ctx.createPattern(img,"repeat");
+        //     ctx.fillStyle = qianzghi;
+        //     ctx.fillRect(0,0,800,800);
+        // }
+
+        // canvas填充
+        var img = drawHAHAH();
+        var qianzghi = ctx.createPattern(img,"repeat");
+        ctx.fillStyle = qianzghi;
+        ctx.fillRect(0,0,800,800);
+
+        //设置video填充
+        // var video = document.createElement("video");
+        // video.src = "111.mp4";
+        // video.autoplay = "autoplay";
+        // setInterval(function(){
+        //     var pattern= ctx.createPattern(video, "repeat");
+        //     ctx.fillStyle = pattern;
+        //     ctx.fillRect(0, 0, 200, 200);
+        //     },16);
+    }
+
+    // canvas填充的canvas
+    function drawHAHAH() {
+        var HAHAHA = document.getElementById("HAHAHA");
+        var context = HAHAHA.getContext("2d");
+        HAHAHA.height = 100;
+        HAHAHA.width = 100;
+        context.fillStyle = "#035";
+        context.fillRect(0,0,100,100);
+        for (var i = 0; i < 10; i++) {
+            var x = Math.random() * HAHAHA.width;
+            var y = Math.random() * HAHAHA.height;
+            drawStar(context, 2, x, y, 30); 
+        }
+        return HAHAHA;
+    }
+    // context: 上下文环境  r: 五角星外角半径  
+    // x: 五角星相对画布x轴的偏移量  y: 五角星相对于画布y轴的偏移量 rot: 五角星旋转的角度
+    function drawStar(context, r, x, y, rot) {
+        context.save();
+        context.translate(x, y);
+        context.rotate(rot/180 * Math.PI);
+        context.scale(r, r);
+        drawPath(context);
+        context.fillStyle = "#fb3";
+        context.strokeStyle = "#fd5";
+        // context.lineWidth = 2;  // 会被scale缩放,注释
+        // context.lineJoin = "round";
+        context.fill();
+        context.stroke();
+        context.restore();
+    }
+    // 画出一个基础的星形
+    function drawPath(context) {
+        context.beginPath();
+        for (var i = 0; i < 5; i++) {
+            context.lineTo(
+                Math.cos((18 + i * 72)/180 * Math.PI), 
+                -Math.sin((18 + i * 72)/180 * Math.PI)
+            );
+            context.lineTo(
+                Math.cos((54 + i * 72)/180 * Math.PI) * 0.5, 
+                -Math.sin((54 + i * 72)/180 * Math.PI) * 0.5
+            );  
+        }
+        context.closePath();
+    }
+</script>
+</html>
